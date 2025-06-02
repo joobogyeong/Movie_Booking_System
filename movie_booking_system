@@ -1,0 +1,35 @@
+digraph MovieBookingSystem {
+	fontname=Arial fontsize=10 rankdir=LR
+	MovieTicketSystem [label="MovieTicketSystem
+(Singleton)" shape=box]
+	User [label=User shape=box]
+	MovieFactory [label="MovieFactory
+(Factory)" shape=box]
+	Movie [label=Movie shape=box]
+	Booking [label="Booking
+(Prototype)" shape=box]
+	BookingBuilder [label="BookingBuilder
+(Builder)" shape=box]
+	PaymentAdapter [label="PaymentAdapter
+(Adapter)" shape=box]
+	PaymentProcessor [label="PaymentProcessor
+(Proxy)" shape=box]
+	Notifier [label="Notifier
+(Observer)" shape=box]
+	Strategy [label="RecommendationStrategy
+(Strategy)" shape=box]
+	PopularMovies [label=PopularMoviesStrategy shape=ellipse]
+	NearestTheater [label=NearestTheaterStrategy shape=ellipse]
+	User -> MovieTicketSystem [label="logs in"]
+	MovieTicketSystem -> MovieFactory [label=uses]
+	MovieFactory -> Movie [label=creates]
+	User -> BookingBuilder [label=builds]
+	BookingBuilder -> Booking [label=builds]
+	Booking -> Movie [label="refers to"]
+	User -> PaymentProcessor [label=initiates]
+	PaymentProcessor -> PaymentAdapter [label=delegates]
+	MovieTicketSystem -> Notifier [label=notifies]
+	User -> Strategy [label=uses]
+	Strategy -> PopularMovies
+	Strategy -> NearestTheater
+}
